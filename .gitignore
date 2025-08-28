@@ -1,0 +1,34 @@
+# Foundry
+out/
+cache/
+broadcast/
+
+# Node
+node_modules/
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage
+lcov.info
+coverage/
+
+# Hardhat
+artifacts/
+cache_hardhat/
+typechain/
+typechain-types/
+
+# Solidity
+*.sol.js
+*.sol.ts

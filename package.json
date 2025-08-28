@@ -1,0 +1,39 @@
+{
+  "name": "@cut/escrow-contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for escrow functionality with flexible payment tokens and oracle-controlled payouts",
+  "main": "index.js",
+  "files": ["src/", "out/"],
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test",
+    "test:verbose": "forge test -vvv",
+    "deploy": "forge script script/Deploy.s.sol",
+    "clean": "forge clean",
+    "size": "forge build --sizes"
+  },
+  "keywords": [
+    "solidity",
+    "escrow",
+    "smart-contracts",
+    "ethereum",
+    "defi",
+    "oracle"
+  ],
+  "author": "Cut Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/escrow-contracts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/escrow-contracts/issues"
+  },
+  "homepage": "https://github.com/your-org/escrow-contracts#readme",
+  "devDependencies": {
+    "foundry": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
