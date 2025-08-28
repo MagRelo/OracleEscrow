@@ -5,12 +5,14 @@
 ### Environment Setup
 
 1. **Install Foundry**
+
    ```bash
    curl -L https://foundry.paradigm.xyz | bash
    foundryup
    ```
 
 2. **Set up environment variables**
+
    ```bash
    export PRIVATE_KEY=your_private_key_here
    export BASE_SEPOLIA_RPC_URL=your_rpc_url_here
@@ -27,11 +29,13 @@
 ### Network Configuration
 
 #### Base Sepolia (Testnet)
+
 - **Chain ID**: 84532
 - **RPC URL**: https://sepolia.base.org
 - **Explorer**: https://sepolia.basescan.org
 
 #### Base Mainnet
+
 - **Chain ID**: 8453
 - **RPC URL**: https://mainnet.base.org
 - **Explorer**: https://basescan.org
@@ -94,6 +98,7 @@ forge script script/Deploy.s.sol \
 ### 1. Check Deployment
 
 After deployment, you should see output like:
+
 ```
 EscrowFactory deployed at: 0x...
 ```
@@ -126,6 +131,7 @@ address escrow = factory.createEscrow(
 ### 1. Oracle Configuration
 
 Set up your oracle addresses:
+
 - Ensure oracle has sufficient gas for transactions
 - Test oracle functions on testnet first
 - Monitor oracle performance
@@ -133,6 +139,7 @@ Set up your oracle addresses:
 ### 2. Payment Token Setup
 
 For each payment token you want to support:
+
 - Verify the token contract address
 - Test deposits and withdrawals
 - Ensure proper decimal handling
@@ -140,6 +147,7 @@ For each payment token you want to support:
 ### 3. Monitoring
 
 Set up monitoring for:
+
 - Contract events
 - Gas usage
 - Failed transactions
@@ -161,12 +169,14 @@ Set up monitoring for:
 ### Common Issues
 
 1. **Insufficient Gas**
+
    ```bash
    # Increase gas limit
    forge script script/Deploy.s.sol --gas-limit 5000000
    ```
 
 2. **Verification Failed**
+
    ```bash
    # Check compiler version matches
    forge build --force
@@ -181,6 +191,7 @@ Set up monitoring for:
 ### Support
 
 For deployment issues:
+
 1. Check the logs for specific error messages
 2. Verify environment variables are set correctly
 3. Ensure sufficient funds for deployment

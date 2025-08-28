@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Smart contracts for escrow functionality with flexible payment tokens and oracle-controlled payouts",
   "main": "index.js",
-  "files": ["src/", "out/"],
+  "files": [
+    "src/",
+    "out/"
+  ],
   "scripts": {
     "build": "forge build",
     "test": "forge test",

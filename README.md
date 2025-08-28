@@ -4,19 +4,9 @@ A collection of smart contracts for managing escrow functionality with flexible 
 
 ## Features
 
-- **Escrow Contract**: Generic escrow system with participant deposits and oracle-controlled payouts
-- **EscrowFactory**: Factory contract for creating and managing multiple escrow instances
-- **MockUSDC**: Mock USDC token for testing purposes
-
-## Key Features
-
-- Fixed deposit amounts per participant
-- Oracle-controlled payout distribution
-- Automatic fee collection for oracle
-- Expiry-based refund mechanism
-- Cancellation support
-- Gas-optimized participant management
 - Support for any ERC20 token as payment
+- Oracle-controlled payout distribution using basis points
+- Expiry-based refund mechanism
 
 ## Installation
 
@@ -58,11 +48,18 @@ address escrow = factory.createEscrow(
 
 ```solidity
 import "@cut/escrow-contracts/src/Escrow.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 Escrow escrow = Escrow(escrowAddress);
 
-// Approve tokens first
-IERC20(paymentToken).approve(address(escrow), depositAmount);
+// Get escrow details (deposit amount and expiry)
+(uint256 depositAmount, uint256 expiry) = escrow.details();
+
+// Get payment token address
+IERC20 paymentToken = escrow.paymentToken();
+
+// Approve tokens first (using the deposit amount from escrow details)
+paymentToken.approve(address(escrow), depositAmount);
 
 // Deposit
 escrow.deposit();
@@ -88,12 +85,14 @@ escrow.distribute(payouts);
 ### Escrow Contract
 
 The main escrow contract that handles:
+
 - Participant deposits and withdrawals
 - Oracle-controlled payout distribution
 - Expiry-based refunds
 - Emergency cancellation
 
 **Key Functions:**
+
 - `deposit()` - Deposit the required amount
 - `withdraw()` - Withdraw deposit before escrow proceeds
 - `closeDeposits()` - Oracle closes deposits (moves to IN_PROGRESS)
@@ -106,6 +105,7 @@ The main escrow contract that handles:
 Factory contract for creating escrow instances with consistent configuration.
 
 **Key Functions:**
+
 - `createEscrow(...)` - Creates a new escrow contract
 - `getEscrows()` - Returns all created escrows
 
@@ -130,6 +130,7 @@ forge test --gas-report
 ### Prerequisites
 
 1. Set up environment variables:
+
 ```bash
 export PRIVATE_KEY=your_private_key
 export BASE_SEPOLIA_RPC_URL=your_rpc_url
@@ -137,6 +138,7 @@ export BASESCAN_API_KEY=your_etherscan_api_key
 ```
 
 2. Create `.env` file:
+
 ```env
 PRIVATE_KEY=your_private_key
 BASE_SEPOLIA_RPC_URL=your_rpc_url
@@ -197,6 +199,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## Support
 
 For questions and support:
+
 - Open an issue on GitHub
 - Check the documentation in the `docs/` folder
 - Review the test files for usage examples
